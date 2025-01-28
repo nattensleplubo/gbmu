@@ -6,6 +6,21 @@ pub struct CPU {
     memory: [u8; 0xFFFF]
 }
 
+#[derive(Debug)]
+#[allow(non_camel_case_types)]
+pub enum AddressingMode {
+    Immediate,
+    ZeroPage,
+    ZeroPage_X,
+    ZeroPage_Y,
+    Absolute,
+    Absolute_X,
+    Absolute_Y,
+    Indirect_X,
+    Indirect_Y,
+    NoneAddressing,
+}
+
 impl CPU {
     pub fn new() -> Self {
         CPU {
@@ -53,6 +68,12 @@ impl CPU {
             self.status = self.status | 0b1000_0000;
         } else {
             self.status = self.status & 0b0111_1111;
+        }
+    }
+
+    fn get_operand_address(&self, mode: &AddressingMode) -> u16 {
+        match mode {
+            
         }
     }
 
